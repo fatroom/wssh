@@ -2,6 +2,8 @@ import sys
 import os
 import fcntl
 
+import time
+
 import string
 
 import gevent
@@ -26,6 +28,10 @@ class StdioPipedWebSocketHelper:
         if self.opts.verbosity >= 3:
             mode_msg = 'binary' if m.is_binary else 'text'
             print >> sys.stderr, "[received payload of length %d as %s]" % (len(m.data), mode_msg)
+        if self.opts.timestamps:
+          sys.stdout.write(time.strftime('%l:%M%p %Z on %b %d, %Y'))
+        if self.opts.new_lines:
+          sys.stdout.write("\n")
         sys.stdout.write(m.data)
         if self.opts.new_lines:
           sys.stdout.write("\n")

@@ -21,6 +21,8 @@ def main():
             help='separate each received message with a newline')
     parser.add_argument('-q', dest='quit_on_eof', metavar='secs', type=int,
             help='quit after EOF on stdin and delay of secs (0 allowed)')
+    parser.add_argument('-t', dest='timestamps', action='store_true',
+            help='print timestamps of every obtained message')
     parser.add_argument('-v', dest='verbosity', action='count',
             help='verbose (use up to 3 times to be more verbose)')
     args = parser.parse_args()
